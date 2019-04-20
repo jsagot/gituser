@@ -12,5 +12,10 @@ if [ $STATUS = "404" ]; then
   exit 0
 fi
 
+if [ $STATUS = "500" ]; then
+  printf 'Oops sorry, it looks like Github API is unavalable.\n'
+  exit 0
+fi
+
 printf '$USER: UNAVAILABLE\n'
 exit 0
