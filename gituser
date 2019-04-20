@@ -1,0 +1,16 @@
+if [ -z $1 ]; then
+  printf 'gituser version 1.0\n  USAGE: You must specify a username to check.\n'
+  exit -1
+fi
+
+USER=$1
+URL="https://api.github.com/users/$USER"
+STATUS=`curl -s -o /dev/null -w "%{http_code}" $URL`
+
+if [ $STATUS = "404" ]; then
+  printf '$USER: AVAILABLE\n'
+  exit 0
+fi
+
+printf '$USER: UNAVAILABLE\n'
+exit 0
